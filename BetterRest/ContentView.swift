@@ -13,10 +13,19 @@ struct ContentView: View {
     @State private var coffeeAmount = 1
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            NavigationStack {
+                VStack {
+                    Text("When do you want to wake up?")
+                        .font(.headline)
+
+                    DatePicker("Please enter a time", selection: $wakeUp, displayedComponents: .hourAndMinute)
+                        .labelsHidden()
+
+                    Text("Desired amount of sleep")
+                        .font(.headline)
+                    Stepper("\(sleepAmount.formatted())", value: $sleepAmount, in: 4...12, step: 0.5)
+                }
+            }
         }
         .padding()
     }
